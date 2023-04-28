@@ -43,5 +43,6 @@ int main(void)
 		}
 		status = isatty(0);
 	} while (status);
+	free_ar(split_p);
 	return (0);
 }
