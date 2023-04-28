@@ -35,7 +35,7 @@ char **split_buff(char *buff, char *spliter)
 	char *token = NULL, *cpbuff = strdup(buff);
 
 	if (cpbuff == NULL)
-		exit(0);
+		exit(EXIT_FAILURE);
 	token = strtok(buff, spliter);
 	while (token != NULL)
 	{
@@ -60,7 +60,7 @@ char **split_buff(char *buff, char *spliter)
 		{
 			free_ar(av);
 			free(buff);
-			exit(0);
+			exit(EXIT_FAILURE);
 		}
 		token = strtok(NULL, spliter);
 	}
@@ -85,16 +85,25 @@ char **splitpath(void)
 
         pwd = malloc(sizeof(char*) * (size + 2));
         if (pwd == NULL)
-                exit(0);
+                exit(EXIT_FAILURE);
         
 	for (i = 0; i < (size + 2); i++)
 		pwd[i] = NULL;
-	pwd[0] = strdup(strtok(ubi, ":"));
 
+	pwd[0] = strdup(strtok(ubi, ":"));
+	if (pwd[0] == NULL)
+	{
+		free(pwd);
+		exit(EXIT_FAILURE);
+	}
         for (i = 1; i < size; i++)
         {
                 pwd[i] = strdup(strtok(NULL, ":"));
-
+		if (pwd[i] == NULL)
+		{
+			free_ar(pwd);
+			exit(EXIT_FAILURE);
+		}
         }
 
         return (pwd);

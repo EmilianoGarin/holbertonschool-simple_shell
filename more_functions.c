@@ -6,6 +6,7 @@ int find_exe(char **av, char**pwd)
 {
 	int ac, i = 0;
 	char *token = NULL;
+	char **envp = NULL;
 
 	if (strcmp(av[0], "exit") == 0)
 	{
@@ -13,13 +14,23 @@ int find_exe(char **av, char**pwd)
 		free_ar(av);
 		exit(0);
 	}
+	if (strcmp(av[0], "env") == 0)
+	{
+		envp = environ;
+		while (*envp != NULL) 
+		{
+			printf("%s\n", *envp);
+			envp++;
+		}
+		return (1);
+	}
 	while ( pwd[i] != NULL)
 	{
 		token = malloc(strlen(pwd[i]) + strlen(av[0]) + 2);
 		if (token == NULL)
 		{
 			free(pwd);
-			return (1);
+			exit(EXIT_FAILURE);
 		}
 		sprintf(token, "%s/%s", pwd[i], av[0]);
 		ac = access(token, X_OK);
@@ -33,6 +44,7 @@ int find_exe(char **av, char**pwd)
 		i++;
 		token = NULL;
 	}
+	printf("The file '%s' was not found.",  av[0]);
 	return (1);
 }
 
@@ -50,7 +62,7 @@ int for_exe(char **av, char *dir)
 	}
 	else if (pid == 0)
 	{
-		execve(dir, av, NULL);
+		execve(dir, av, environ);
 		perror("execve failed");
 		free_ar(av);
 		exit(EXIT_FAILURE);

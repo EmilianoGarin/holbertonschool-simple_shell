@@ -21,7 +21,7 @@ int main(void)
 		if (buff == NULL)
 		{
 			free_ar(split_p);
-			exit(1);
+			exit(EXIT_SUCCESS);
 		}
 		else
 		{		
@@ -29,19 +29,19 @@ int main(void)
 			if (av == NULL)
 				continue;
 			free(buff);
-			if (av[0][0] == '/')
+			if (av[0][0]  == '.' && av[0][1]== '/')
 			{
 				ac = access(av[0], X_OK);
 				if (ac == 0)
 					for_exe(av, av[0]);
-			} else
-			{
-
-				find_exe(av, split_p);
+				else
+					printf("The file '%s' was not found.", av[0]);
 			}
-
+		       	else
+					find_exe(av, split_p);
 			free_ar(av);
 		}
+		status = isatty(0);
 	} while (status);
 	return (0);
 }
