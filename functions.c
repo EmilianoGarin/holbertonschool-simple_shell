@@ -89,7 +89,6 @@ char **splitpath(void)
                 exit(0);
         pwd[0] = strdup(strtok(ubi, ":"));
 
-        printf("%s   %p \n", pwd[0], pwd[0]);
         for (i = 1; i < size; i++)
         {
                 pwd[i] = strdup(strtok(NULL, ":"));
