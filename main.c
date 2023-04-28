@@ -43,6 +43,5 @@ int main(void)
 			free_ar(av);
 		}
 	} while (status);
-	printf("\n");
 	return (0);
 }
