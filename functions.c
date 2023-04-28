@@ -86,14 +86,16 @@ char **splitpath(void)
         pwd = malloc(sizeof(char*) * (size + 2));
         if (pwd == NULL)
                 exit(0);
-        pwd[0] = strdup(strtok(ubi, ":"));
+        
+	for (i = 0; i < (size + 2); i++)
+		pwd[i] = NULL;
+	pwd[0] = strdup(strtok(ubi, ":"));
 
         for (i = 1; i < size; i++)
         {
                 pwd[i] = strdup(strtok(NULL, ":"));
 
         }
-        pwd[++i] = NULL;
 
         return (pwd);
 }
