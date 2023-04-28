@@ -50,7 +50,6 @@ int for_exe(char **av, char *dir)
 	}
 	else if (pid == 0)
 	{
-		printf("%s, %s", dir, av[0]);
 		execve(dir, av, NULL);
 		perror("execve failed");
 		free_ar(av);
