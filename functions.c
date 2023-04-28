@@ -87,7 +87,6 @@ char **splitpath(void)
         pwd = malloc(sizeof(char*) * (size + 2));
         if (pwd == NULL)
                 exit(0);
-        printf("%d \n", size);
         pwd[0] = strdup(strtok(ubi, ":"));
 
         printf("%s   %p \n", pwd[0], pwd[0]);
@@ -95,10 +94,8 @@ char **splitpath(void)
         {
                 pwd[i] = strdup(strtok(NULL, ":"));
 
-                printf("%s   %p \n", pwd[i], pwd[i]);
         }
         pwd[++i] = NULL;
-        printf("%d \n", i);
 
         return (pwd);
 }
