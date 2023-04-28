@@ -21,7 +21,6 @@ char *buffer(void)
 	if (getline(&buff, &len, stdin) == -1)
 	{
 		free(buff);
-		printf("\n");
 		return (NULL);
 	}
 	return (buff);
