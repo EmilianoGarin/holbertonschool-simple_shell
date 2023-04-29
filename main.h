@@ -17,3 +17,5 @@ void free_ar(char ** av);
 char *_getenv(char *name);
 char **_split_p1(void);
 char **_strtok(char *path);
+
+void exit_127(char *name, char *name_p, char **av, char **split_p);

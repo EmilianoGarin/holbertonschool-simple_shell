@@ -44,8 +44,7 @@ int find_exe(char **av, char**pwd)
 		i++;
 		token = NULL;
 	}
-	printf("The file '%s' was not found.",  av[0]);
-	return (1);
+	return (2);
 }
 
 /*******************************************************/
