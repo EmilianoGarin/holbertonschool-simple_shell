@@ -11,9 +11,9 @@ int main(void)
 	int ac = 0, status = 1;
 
 	signal(SIGINT, sig_handler);
-	
-	split_p = _split_p1();
-	
+
+	split_p = splitpath();
+
 	do {
 		isatty(0) == 1 ? printf("$ ") : 0;
 
@@ -29,7 +29,7 @@ int main(void)
 			if (av == NULL)
 				continue;
 			free(buff);
-			if (av[0][0]  == '.' && av[0][1]== '/')
+			if (strchr(av[0], '/') != NULL)
 			{
 				ac = access(av[0], X_OK);
 				if (ac == 0)
@@ -37,8 +37,8 @@ int main(void)
 				else
 					printf("The file '%s' was not found.", av[0]);
 			}
-		       	else
-					find_exe(av, split_p);
+			else
+				find_exe(av, split_p);
 			free_ar(av);
 		}
 		status = isatty(0);

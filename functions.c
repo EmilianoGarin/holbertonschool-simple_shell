@@ -35,7 +35,7 @@ char **split_buff(char *buff, char *spliter)
 	char *token = NULL, *cpbuff = strdup(buff);
 
 	if (cpbuff == NULL)
-		exit(EXIT_FAILURE);
+		free(buff), exit(EXIT_FAILURE);
 	token = strtok(buff, spliter);
 	while (token != NULL)
 	{
@@ -44,10 +44,12 @@ char **split_buff(char *buff, char *spliter)
 	}
 	if (size == 0)
 	{
-		free(buff);
 		free(cpbuff);
+		free(buff);
 		return (NULL);
 	}
+
+
 	av = malloc(sizeof(char *) * (size + 1));
 	if (av == NULL)
 		exit(EXIT_FAILURE);
@@ -70,59 +72,63 @@ char **split_buff(char *buff, char *spliter)
 }
 
 /****************************************************************/
-
 char **splitpath(void)
 {
-        char *ubi = _getenv("PATH");
-        char **pwd = NULL;
-        int i = 0, size = 0;
+	char *cpubi = NULL, *ubi = _getenv("PATH");
+	char **pwd = NULL;
+	int i = 0, size = 0;
 
-        if (ubi == NULL)
-                exit(EXIT_FAILURE);
-        for (i = 0; ubi[i] != '\0'; i++)
-                if (ubi[i] == ':')
-                        size++;
+	if (ubi == NULL)
+		exit(EXIT_FAILURE);
+	for (i = 0; ubi[i] != '\0'; i++)
+		if (ubi[i] == ':')
+			size++;
 
-        pwd = malloc(sizeof(char*) * (size + 2));
-        if (pwd == NULL)
-                exit(EXIT_FAILURE);
-        
+	pwd = malloc(sizeof(char*) * (size + 2));
+	if (pwd == NULL)
+		exit(EXIT_FAILURE);
+
 	for (i = 0; i < (size + 2); i++)
 		pwd[i] = NULL;
-
-	pwd[0] = strdup(strtok(ubi, ":"));
+	
+	cpubi = strdup(ubi);
+	if (cpubi == NULL)
+                exit(EXIT_FAILURE);
+	free(ubi);
+	pwd[0] = strdup(strtok(cpubi, ":"));
 	if (pwd[0] == NULL)
 	{
 		free(pwd);
 		exit(EXIT_FAILURE);
 	}
-        for (i = 1; i < size; i++)
-        {
-                pwd[i] = strdup(strtok(NULL, ":"));
+	for (i = 1; i < size; i++)
+	{
+		pwd[i] = strdup(strtok(NULL, ":"));
 		if (pwd[i] == NULL)
 		{
 			free_ar(pwd);
 			exit(EXIT_FAILURE);
 		}
-        }
+	}
+	free(cpubi);
 
-        return (pwd);
+	return (pwd);
 }
 
 /*******************************************************/
 /**
-char *_getenv(char *name)  ingresar "PATH" en name*
-{
-    char **env = environ;
-    int i, name_len = strlen(name);
+  char *_getenv(char *name)  ingresar "PATH" en name*
+  {
+  char **env = environ;
+  int i, name_len = strlen(name);
 
-    for (i = 0; env[i] != NULL; i++) 
-    {
-        if (strncmp(env[i], name, name_len) == 0 && env[i][name_len] == '=') 
-	{
-            return &env[i][name_len + 1];
-        }
-    }
+  for (i = 0; env[i] != NULL; i++) 
+  {
+  if (strncmp(env[i], name, name_len) == 0 && env[i][name_len] == '=') 
+  {
+  return &env[i][name_len + 1];
+  }
+  }
 
-    return NULL;
-}*/
+  return NULL;
+  }*/
