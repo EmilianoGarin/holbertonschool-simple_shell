@@ -1,17 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-	extern char **environ;
-void free_ar(char **av)
+#include "main.h"
+/*:void free_ar(char **av)
 {
         int x = 0;
 
         for (; av[x] != NULL; x++)
                 free(av[x]);
         free(av);
-}
+}*/
 char **_strtok(char *path)
 {
         char **cortado;

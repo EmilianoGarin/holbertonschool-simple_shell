@@ -12,7 +12,7 @@ int main(void)
 
 	signal(SIGINT, sig_handler);
 	
-	split_p = splitpath();
+	split_p = _split_p1();
 	
 	do {
 		isatty(0) == 1 ? printf("$ ") : 0;

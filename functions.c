@@ -110,8 +110,8 @@ char **splitpath(void)
 }
 
 /*******************************************************/
-
-char *_getenv(char *name) /** ingresar "PATH" en name*/
+/**
+char *_getenv(char *name)  ingresar "PATH" en name*
 {
     char **env = environ;
     int i, name_len = strlen(name);
@@ -125,4 +125,4 @@ char *_getenv(char *name) /** ingresar "PATH" en name*/
     }
 
     return NULL;
-}
+}*/

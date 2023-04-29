@@ -15,3 +15,5 @@ char **splitpath();
 int find_exe(char **av, char**pwd);
 void free_ar(char ** av);
 char *_getenv(char *name);
+char **_split_p1(void);
+char **_strtok(char *path);
