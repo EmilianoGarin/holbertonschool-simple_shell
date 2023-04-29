@@ -2,7 +2,6 @@
 /*:void free_ar(char **av)
 {
         int x = 0;
-
         for (; av[x] != NULL; x++)
                 free(av[x]);
         free(av);
@@ -65,7 +64,7 @@ char **_strtok(char *path)
 }
 char *_getenv(char *name)
 {
-      	char **split_path;
+      	char **split_path = NULL;
       	char *path = NULL;
         char **env = environ;
         int t = 0, j, i, name_len = strlen(name), k = 0;
@@ -107,7 +106,7 @@ char *_getenv(char *name)
 char **_split_p1(void)
 {
         char *ubi = _getenv("PATH");
-        char **pwd;
+        char **pwd = NULL;
 	int i;
 	 pwd = _strtok(ubi);
 	 free(ubi);
