@@ -6,7 +6,7 @@ README.MD
     <h2>ABOUT THE PROGRAM</h2>
     <p>This program is a simple shell in which you can set inputs in a terminal. After this the program reads the commands and sends a output.  You can execute the program in two modes. You have the interactive mode and the no interactive mode. In the interactive mode the program starts an infinity loop. In this mode you can set various inputs in one execute. In the no interactive you only can send one input. You must start once again the program to use another command. </p>
     
-    </h3> functions</h3>
+    <h3> functions</h3>
     <ul>
       <li>buffer(): This function introduces the inputs in a guffer </li>
       <li>split_buff(): This function splits the buffer. </li>
