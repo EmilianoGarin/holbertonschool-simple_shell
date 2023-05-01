@@ -1,5 +1,14 @@
 #include "main.h"
 
+/**
+ * exit_127 - exits the program when
+ * the program requested by the user is not found
+ * @name: current program name
+ * @name_p: name of the program requested by the user
+ * @av: array to free
+ * @split_p: array to free
+ * Return: exits with error number 127
+ */
 
 void exit_127(char *name, char *name_p, char **av, char **split_p)
 {
@@ -9,10 +18,22 @@ void exit_127(char *name, char *name_p, char **av, char **split_p)
 	exit(127);
 }
 
-void sig_handler()
+/**
+ * sig_handler - captures when ctrl + c is entered
+ * Return: nothing
+ */
+void sig_handler(void)
 {
-	printf("received EXIT\n");
+	printf("\n");
 }
+
+/**
+ * main - a simple SHELL
+ * @argc: size of argv
+ * @argv: array with argument
+ * Return: 0 all good, 1 an error occurred and 127 when the program
+ * requested by the user is not found
+ */
 
 int main(__attribute__((unused)) int argc, char *argv[])
 {
@@ -21,7 +42,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 	int ac = 0, status = 1;
 
 	signal(SIGINT, sig_handler);
-	split_p = splitpath();
+	split_p = split_path();
 	do {
 		isatty(0) == 1 ? printf("$ ") : 0;
 
@@ -32,7 +53,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 			exit(EXIT_SUCCESS);
 		}
 		else
-		{		
+		{
 			av = split_buff(buff, " \n\t");
 			if (av == NULL)
 				continue;

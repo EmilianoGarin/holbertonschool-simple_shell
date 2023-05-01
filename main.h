@@ -1,3 +1,6 @@
+#ifndef _SHELL_
+#define _SHELL_
+
 #include <stdio.h>
 #include <string.h>
 #include <stddef.h>
@@ -8,14 +11,18 @@
 
 extern char **environ;
 
+/* main.c */
+void exit_127(char *name, char *name_p, char **av, char **split_p);
+
+/* functions.c */
+void free_ar(char **av);
 char *buffer(void);
 char **split_buff(char *buff, char *spliter);
-int for_exe(char **av, char *dir);
-char **splitpath();
-int find_exe(char **av, char**pwd);
-void free_ar(char ** av);
+char **split_path();
 char *_getenv(char *name);
-char **_split_p1(void);
-char **_strtok(char *path);
 
-void exit_127(char *name, char *name_p, char **av, char **split_p);
+/* more_functions.c */
+int find_exe(char **av, char **pwd);
+int for_exe(char **av, char *dir);
+
+#endif

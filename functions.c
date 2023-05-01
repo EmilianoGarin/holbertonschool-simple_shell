@@ -1,6 +1,10 @@
 #include "main.h"
 
-/****************************************************************/
+/**
+ * free_ar - free all the array
+ * @av: array to free
+ * Return: nothing
+ */
 void free_ar(char **av)
 {
 	int x = 0;
@@ -10,7 +14,10 @@ void free_ar(char **av)
 	free(av);
 }
 
-/****************************************************************/
+/**
+ * buffer - takes the commands entered by the user
+ * Return: returns the address of the memory with commands
+ */
 
 char *buffer(void)
 {
@@ -27,7 +34,12 @@ char *buffer(void)
 }
 
 
-/****************************************************************/
+/**
+ * split_buff - split the commands entered by the user
+ * @buff: commands entered by the user
+ * @spliter: string with separator characters
+ * Return: returns the address of the array where the partitioned of buff
+ */
 char **split_buff(char *buff, char *spliter)
 {
 	int size = 0, posi = 0;
@@ -70,9 +82,12 @@ char **split_buff(char *buff, char *spliter)
 	free(cpbuff);
 	return (av);
 }
-
-/****************************************************************/
-char **splitpath(void)
+/**
+ * split_path - split the addresses in the PATH environment variable
+ * Return: returns the address of the array where
+ * the partitioned PATH is stored
+ */
+char **split_path(void)
 {
 	char *cpubi = NULL, *ubi = _getenv("PATH");
 	char **pwd = NULL;
@@ -84,16 +99,16 @@ char **splitpath(void)
 		if (ubi[i] == ':')
 			size++;
 
-	pwd = malloc(sizeof(char*) * (size + 2));
+	pwd = malloc(sizeof(char *) * (size + 2));
 	if (pwd == NULL)
 		exit(EXIT_FAILURE);
 
 	for (i = 0; i < (size + 2); i++)
 		pwd[i] = NULL;
-	
+
 	cpubi = strdup(ubi);
 	if (cpubi == NULL)
-                exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	free(ubi);
 	pwd[0] = strdup(strtok(cpubi, ":"));
 	if (pwd[0] == NULL)
@@ -115,20 +130,52 @@ char **splitpath(void)
 	return (pwd);
 }
 
-/*******************************************************/
 /**
-  char *_getenv(char *name)  ingresar "PATH" en name*
-  {
-  char **env = environ;
-  int i, name_len = strlen(name);
+ * _getenv - search among the environment variables for the one called "name"
+ * @name: name of the environment variable that is prompted
+ * Return: returns the address of the memory with the environment variable or
+ * NULL if not found
+ */
 
-  for (i = 0; env[i] != NULL; i++) 
-  {
-  if (strncmp(env[i], name, name_len) == 0 && env[i][name_len] == '=') 
-  {
-  return &env[i][name_len + 1];
-  }
-  }
+char *_getenv(char *name)
+{
+	char *path = NULL;
+	char **env = environ;
+	int t = 0, j, i, name_len = strlen(name), k = 0;
 
-  return NULL;
-  }*/
+	if (name == NULL)
+	{
+		free(name);
+		fprintf(stderr, "Error: no se pudo asignar memoria\n");
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; env[i] != NULL; i++)
+	{
+		if (strncmp(env[i], name, name_len) == 0 && env[i][name_len] == '=')
+		{
+			k = name_len + 1;
+			t = strlen(env[i]);
+
+			k = t - (name_len + 1);
+			path = (char *) malloc(sizeof(char) * k + 1);
+			if (name == NULL)
+			{
+				free(path);
+				fprintf(stderr, "Error: no se pudo asignar memoria\n");
+				exit(EXIT_FAILURE);
+			}
+			j = 0;
+			path[j] = '\0';
+			for (k = name_len + 1; env[i][k] != '\0'; k++)
+			{
+				path[j] = env[i][k];
+				j++;
+			}
+			path[j] = '\0';
+			return (path);
+		}
+	}
+	return (NULL);
+}
+
+

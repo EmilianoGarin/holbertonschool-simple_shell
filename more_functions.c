@@ -1,8 +1,13 @@
 #include "main.h"
 
 
-/*******************************************************/
-int find_exe(char **av, char**pwd)
+/**
+ * find_exe - filter the input to run the correct command
+ * @av: commands entered by the user
+ * @pwd: addresses saved in PATH
+ * Return: 1 all good and 2 command not found
+ */
+int find_exe(char **av, char **pwd)
 {
 	int ac, i = 0;
 	char *token = NULL;
@@ -12,19 +17,16 @@ int find_exe(char **av, char**pwd)
 	{
 		free_ar(pwd);
 		free_ar(av);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	if (strcmp(av[0], "env") == 0)
 	{
 		envp = environ;
-		while (*envp != NULL) 
-		{
-			printf("%s\n", *envp);
-			envp++;
-		}
+		for (; envp[i] != NULL; i++)
+			printf("%s\n", envp[i]);
 		return (1);
 	}
-	while ( pwd[i] != NULL)
+	for (; pwd[i] != NULL; i++)
 	{
 		token = malloc(strlen(pwd[i]) + strlen(av[0]) + 2);
 		if (token == NULL)
@@ -41,13 +43,17 @@ int find_exe(char **av, char**pwd)
 			return (1);
 		}
 		free(token);
-		i++;
 		token = NULL;
 	}
 	return (2);
 }
 
-/*******************************************************/
+/**
+ * for_exe - creates a child process and executes the requested program
+ * @av: commands entered by the user
+ * @dir: requested program address
+ * Return: 1 all good
+ */
 
 int for_exe(char **av, char *dir)
 {
