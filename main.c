@@ -22,7 +22,7 @@ void exit_127(char *name, char *name_p, char **av, char **split_p)
  * sig_handler - captures when ctrl + c is entered
  * Return: nothing
  */
-void sig_handler(void)
+void sig_handler(__attribute__((unused)) int signum)
 {
 	printf("\n");
 }
