@@ -10,17 +10,12 @@ README.MD
       <li>buffer(): This function introduces the inputs in a guffer </li>
       <li>split_buff(): This function splits the buffer. </li>
       <li>split_buff(): This function splits the buffer. </li>      <li>_getenv(): This function gets the path. </li>
-      <li>splitpath(): This function splits the path. </li>
-      <li>Find_exe(): This function searches for the path. If it finds it execute the command. </li>
-      <li>For_exe(): This command executes the commands. </li>
-    </ul>
-    <h3>Features</h3>
-    <p>Brown bears are not always completely brown. Some can be reddish or yellowish. They have very large, curved claws and huge paws. Male brown bears are often 30% larger than female brown bears. They can range from 5 feet to 9 feet from head to toe.</p>
-  
-      
-    
-    <h2>About the project</h2>
-    <p>This is the second group project of the Holberton academy.  
+ <li>splitpath(): This function splits the path. </li>
+<li>Find_exe(): This function searches for the path. If it finds it execute the command. </li>
+<li>For_exe(): This command executes the commands. </li>
+</ul>
+<h2>About the project</h2>
+<p>This is the second group project of the Holberton academy.  
 In this project a simplified version of a shell terminal was created. 
 The project was realized in two weeks. The groups for this project were made up of two people. </p>
   <div id="media">
@@ -29,12 +24,20 @@ The project was realized in two weeks. The groups for this project were made up 
 <h2>To know more</h2>
 <ul>
       <li>https://en.wikipedia.org/wiki/Unix_shell </li>
-      <li> </li>
-      <li>split_buff(): This function splits the buffer. </li>      <li>_getenv(): This function gets the path. </li>
-      <li>splitpath(): This function splits the path. </li>
-      <li>Find_exe(): This function searches for the path. If it finds it execute the command. </li>
-      <li>For_exe(): This command executes the commands. </li>
+<li>https://en.wikipedia.org/wiki/Thompson_shell</li>
+      <li>https://en.wikipedia.org/wiki/Ken_Thompson</li>
     </ul>
+<h2>Requirements</h2>
+ <ul>
+ <li>Allowed editors: vi, vim, emacs</li>
+<li>All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89</li>
+<li>All your files should end with a new line</li>
+<li>A README.md file, at the root of the folder of the project is mandatory</li>
+<li>Your shell should not have any memory leaks</li>
+<li>No more than 5 functions per file</li>
+<li>All your header files should be include guarded</li>
+<li>Use system calls only when you need to (why?)</li>
+</ul>
   </div>
 </body>
 </html>
