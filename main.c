@@ -20,6 +20,7 @@ void exit_127(char *name, char *name_p, char **av, char **split_p)
 
 /**
  * sig_handler - captures when ctrl + c is entered
+ * @signum: is an int
  * Return: nothing
  */
 void sig_handler(__attribute__((unused)) int signum)
